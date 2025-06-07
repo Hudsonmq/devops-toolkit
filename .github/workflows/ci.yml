@@ -27,7 +27,7 @@ jobs:
             bash -c "bash disk_alert.sh && bash disk_usage_report.sh"
 
       - name: Upload logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: script-logs
           path: logs/
