@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0            # traz todo o histórico e todos os arquivos
 
       - name: Debug: list workspace files
         run: |
