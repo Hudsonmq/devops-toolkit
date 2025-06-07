@@ -1,4 +1,3 @@
-# .github/workflows/ci.yml
 name: CI
 
 on:
@@ -33,7 +32,7 @@ jobs:
           docker run --rm \
             -v "${{ github.workspace }}/logs:/opt/scripts/logs" \
             devops-toolkit:ci \
-            bash disk_alert.sh && bash disk_usage_report.sh
+            bash -c "./disk_alert.sh && ./disk_usage_report.sh"
 
       - name: Upload logs
         uses: actions/upload-artifact@v4
