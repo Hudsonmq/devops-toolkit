@@ -3,7 +3,8 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
 
 jobs:
@@ -14,9 +15,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0            # traz todo o histórico e todos os arquivos
+          fetch-depth: 0
 
-      - name: Debug: list workspace files
+      - name: List workspace files
         run: |
           echo "=== Lista de arquivos no workspace ==="
           ls -R .
@@ -32,10 +33,11 @@ jobs:
           docker run --rm \
             -v "${{ github.workspace }}/logs:/opt/scripts/logs" \
             devops-toolkit:ci \
-            bash -c "bash disk_alert.sh && bash disk_usage_report.sh"
+            bash disk_alert.sh && bash disk_usage_report.sh
 
       - name: Upload logs
         uses: actions/upload-artifact@v4
         with:
           name: script-logs
           path: logs/
+
